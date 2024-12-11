@@ -1,3 +1,3 @@
 interface WASDing {
-    void move(direction);
+    void move(String direction);
 }

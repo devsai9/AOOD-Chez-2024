@@ -1,4 +1,3 @@
-
 public class Main {
     public static void main(String[] args) {
         System.out.println("hi");
@@ -7,11 +6,10 @@ public class Main {
 
 
 
-
 /*
- * swing stuff
+swing stuff
  
- import javax.swing.*;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
