@@ -1,8 +1,8 @@
 public class Board {
-    private Piece[][] = new Piece[5][5];
-    private initialized = false;
+    private Piece[][] board = new Piece[5][5];
+    private boolean initialized = false;
 
-    public initialize() {
-        Piece[] pieces = 
+    public void initialize() {
+        Piece[] pieces = new Piece[] {new WASDer(), new Hopper(), new WASDHopper()};
     }
 }

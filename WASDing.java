@@ -1,3 +1,3 @@
-interface WASDing {
-    void move(String direction);
+public interface WASDing {
+    boolean move(int[] startPos, int[] endPos);
 }

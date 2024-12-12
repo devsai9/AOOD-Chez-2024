@@ -1,3 +1,3 @@
 public interface Hopping {
-    void hop(String direction);
+    boolean hop(int[] startPos, int[] endPos);
 }
