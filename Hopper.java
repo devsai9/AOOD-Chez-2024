@@ -5,6 +5,6 @@ public class Hopper extends Piece implements Hopping {
 
     @Override
     public boolean hop(int[] startPos, int[] endPos) {
-        return
+        return false;
     }
 }

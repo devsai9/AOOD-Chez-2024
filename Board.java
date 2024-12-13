@@ -1,8 +1,16 @@
 public class Board {
-    private Piece[][] board = new Piece[5][5];
+    private Piece[][] board;
     private boolean initialized = false;
 
     public void initialize() {
-        Piece[] pieces = new Piece[] {new WASDer(), new Hopper(), new WASDHopper()};
+        // constructor has isWhite boolean parameter
+        Piece[] pieces = new Piece[] {new WASDer(false), new Hopper(false), new WASDHopper(false)};
     }
+
+    public Board(int boardSize) {
+        board = new Piece[boardSize][boardSize];
+    }
+
+    public int getBoardSize() { return board.length; }
+    
 }

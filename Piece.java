@@ -6,4 +6,8 @@ public abstract class Piece {
     }
 
     public boolean getColor() { return color; }
+
+    public Piece(Piece p) {
+        color = p.color;
+    }
 }
