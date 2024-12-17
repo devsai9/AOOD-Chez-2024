@@ -1,6 +1,8 @@
+import javax.swing.*;
+
 public class WASDHopper extends Piece implements WASDing, Hopping {
     public WASDHopper(boolean isWhite) {
-        super(isWhite);
+        super(isWhite, new ImageIcon(isWhite ? "assets/WASDHopper_White.png" : "assets/WASDHopper_Black.png"));
     }
 
     @Override

@@ -18,10 +18,16 @@ public class SwingGUI {
         contentPane = new JPanel();
         contentPane.setLayout(new GridLayout(boardSize, boardSize));
 
+        boolean whiteTile = true;
         for (int x = 0; x < boardSize; x++) {
             for (int y = 0; y < boardSize; y++) {
-                JButton button = new JButton(x + " " + y);
+                JButton button = new JButton();
                 button.addActionListener(taskPerformer);
+                button.setBackground(whiteTile ? new Color(255, 238, 212) : new Color(85, 50, 0));
+                button.setBorderPainted(false);
+                button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                whiteTile = !whiteTile;
+                if (board.getPieceAt(x, y) != null) button.setIcon(Utils.scaleImage(board.getPieceAt(x, y).getImage().toString(), 90, 1008, 1008));
                 contentPane.add(button);
             }
         }
