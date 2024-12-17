@@ -68,7 +68,7 @@ class EventHandling implements ActionListener {
                 gooey.updatePosition(latestClicked[0], latestClicked[1], x, y);
             }
         }
-        else {
+        else if (board.getPieceAt(justClicked[0], justClicked[1]) != null) {
             board.setLatestClicked(justClicked);
         }
     }

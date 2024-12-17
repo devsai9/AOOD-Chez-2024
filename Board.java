@@ -50,7 +50,6 @@ public class Board {
 
     public boolean move(int[] lastPosition, int[] newPosition) {
         if (board[lastPosition[0]][lastPosition[1]] == null) {
-            setLatestClicked(null);
             return false;
         }
 
@@ -60,7 +59,6 @@ public class Board {
             return false;
         }
 
-        // get an array of valid positions, and check if the target position is in it
         Piece temp = board[lastPosition[0]][lastPosition[1]];
         board[lastPosition[0]][lastPosition[1]] = null;
         board[newPosition[0]][newPosition[1]] = temp;
@@ -120,9 +118,9 @@ public class Board {
         if (position[0] + 1 < getBoardSize() && position[1] + 1 < getBoardSize()) {
             validPositions.add(new int[] { position[0] + 1, position[1] + 1 });
         }
-        for (int[] pos : validPositions) {
-            System.out.println(pos[0] + ", " + pos[1]);
-        }
+        // for (int[] pos : validPositions) {
+        //     System.out.println(pos[0] + ", " + pos[1]);
+        // }
         return validPositions;
     }
 }
