@@ -26,7 +26,9 @@ public class SwingGUI {
     }
     
     public final void drawBoard() {
-        System.out.println("DRAWING THE BOARD");
+        contentPane.removeAll();
+        contentPane.revalidate();
+        contentPane.repaint();
         int boardSize = board.getBoardSize();
         boolean whiteTile = true;
         for (int x = 0; x < boardSize; x++) {
@@ -52,26 +54,15 @@ class EventHandling implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         int[] justClicked = new int[] {x, y};
-        System.out.println(board.getLatestClicked());
-        if (board.getLatestClicked() == null) {
-            System.out.println("hi");
-        }
-        else {
-            System.out.println("hisntohusanotehu");
+        if (board.getLatestClicked() != null) {
             boolean moved = board.move(board.getLatestClicked(), justClicked);
             if (moved) {
-                System.out.println("Moved sucessfulyl!");
                 gooey.drawBoard();
-                board.setLatestClicked(null);
-            }
-            else {
-                System.out.println("Did not move successfuly :(");
             }
         }
-
-        // after all logic
-        System.out.println("setting letaste click]!");
-        board.setLatestClicked(justClicked);
+        else {
+            board.setLatestClicked(justClicked);
+        }
     }
 
     public EventHandling(int x, int y, Board board, SwingGUI gooey) {

@@ -46,10 +46,14 @@ public class Board {
     public Piece getPieceAt(int row, int col) { return board[row][col]; }
 
     public boolean move(int[] lastPosition, int[] newPosition) {
+        if (board[lastPosition[0]][lastPosition[1]] == null) {
+            setLatestClicked(null);
+            return false;
+        }
         Piece temp = board[lastPosition[0]][lastPosition[1]];
-        board[lastPosition[0]][lastPosition[1]] = board[newPosition[0]][newPosition[1]];
+        board[lastPosition[0]][lastPosition[1]] = null;
         board[newPosition[0]][newPosition[1]] = temp;
-        System.out.println("hihhhihsnoethisanotehusn sai broke it");
+        setLatestClicked(null);
         return true;
     }
 }
