@@ -2,6 +2,8 @@ public class Board {
     private Piece[][] board;
     private boolean initialized = false;
 
+    private int[] latestClicked;
+
     public Board(int boardSize) {
         board = new Piece[boardSize][boardSize];
         try {
@@ -11,7 +13,20 @@ public class Board {
         }
     }
 
-    public void initialize() throws Exception {
+    public int[] getLatestClicked() {
+        if (latestClicked != null) {
+            return latestClicked.clone();
+        }
+        else {
+            return null;
+        }
+    }
+
+    public void setLatestClicked(int[] position) {
+        latestClicked = position;
+    }
+
+    public final void initialize() throws Exception {
         if (getBoardSize() < 5) throw new Exception("Board size too small");
         if (getBoardSize() % 2 == 0) throw new Exception("Board size can not be an even number");
 
@@ -29,4 +44,12 @@ public class Board {
     public int getBoardSize() { return board.length; }
 
     public Piece getPieceAt(int row, int col) { return board[row][col]; }
+
+    public boolean move(int[] lastPosition, int[] newPosition) {
+        Piece temp = board[lastPosition[0]][lastPosition[1]];
+        board[lastPosition[0]][lastPosition[1]] = board[newPosition[0]][newPosition[1]];
+        board[newPosition[0]][newPosition[1]] = temp;
+        System.out.println("hihhhihsnoethisanotehusn sai broke it");
+        return true;
+    }
 }
