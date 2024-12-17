@@ -9,6 +9,6 @@ public abstract class Piece {
         this.image = image;
     }
 
-    public boolean getColor() { return color; }
+    public boolean isWhite() { return color; }
     public ImageIcon getImage() { return image; }
 }
