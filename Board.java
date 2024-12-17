@@ -1,3 +1,6 @@
+
+import java.util.ArrayList;
+
 public class Board {
     private Piece[][] board;
     private boolean initialized = false;
@@ -50,10 +53,76 @@ public class Board {
             setLatestClicked(null);
             return false;
         }
+
+        boolean positionValid = getPositionValidity(lastPosition, newPosition);
+        if (!positionValid) {
+            setLatestClicked(null);
+            return false;
+        }
+
+        // get an array of valid positions, and check if the target position is in it
         Piece temp = board[lastPosition[0]][lastPosition[1]];
         board[lastPosition[0]][lastPosition[1]] = null;
         board[newPosition[0]][newPosition[1]] = temp;
         setLatestClicked(null);
         return true;
+    }
+
+    public boolean getPositionValidity(int[] lastPosition, int[] newPosition) {
+        ArrayList<int[]> validPositions = validPositions(lastPosition);
+        for (int[] position : validPositions) {
+            if (newPosition[0] == position[0] && newPosition[1] == position[1]) return true;
+        }
+        return false;
+    }
+
+    public ArrayList<int[]> validPositions(int[] position) {
+        ArrayList<int[]> validPositions = new ArrayList<int[]>();
+        Piece piece = board[position[0]][position[1]];
+        if (piece instanceof Hopper || piece instanceof WASDHopper) {
+            if (position[0] - 2 >= 0 && position[1] >= 0) {
+                validPositions.add(new int[] { position[0] - 2, position[1] });
+            }
+            if (position[0] >= 0 && position[1] + 2 < getBoardSize()) {
+                validPositions.add(new int[] { position[0], position[1] + 2 });
+            }
+            if (position[0] < getBoardSize() && position[1] - 2 >= 0) {
+                validPositions.add(new int[] { position[0], position[1] - 2 });
+            }
+            if (position[0] + 2 < getBoardSize() && position[1] < getBoardSize()) {
+                validPositions.add(new int[] { position[0] + 2, position[1] });
+            }
+        }
+        if (piece instanceof WASDer || piece instanceof WASDHopper) {
+            if (position[0] - 1 >= 0 && position[1] >= 0) {
+                validPositions.add(new int[] { position[0] - 1, position[1] });
+            }
+            if (position[0] >= 0 && position[1] + 1 < getBoardSize()) {
+                validPositions.add(new int[] { position[0], position[1] + 1 });
+            }
+            if (position[0] < getBoardSize() && position[1] - 1 >= 0) {
+                validPositions.add(new int[] { position[0], position[1] - 1 });
+            }
+            if (position[0] + 1 < getBoardSize() && position[1] < getBoardSize()) {
+                validPositions.add(new int[] { position[0] + 1, position[1] });
+            }
+        }
+        // add diagonal positions
+        if (position[0] - 1 >= 0 && position[1] - 1 >= 0) {
+            validPositions.add(new int[] { position[0] - 1, position[1] - 1 });
+        }
+        if (position[0] - 1 >= 0 && position[1] + 1 < getBoardSize()) {
+            validPositions.add(new int[] { position[0] - 1, position[1] + 1 });
+        }
+        if (position[0] + 1 < getBoardSize() && position[1] - 1 >= 0) {
+            validPositions.add(new int[] { position[0] + 1, position[1] - 1 });
+        }
+        if (position[0] + 1 < getBoardSize() && position[1] + 1 < getBoardSize()) {
+            validPositions.add(new int[] { position[0] + 1, position[1] + 1 });
+        }
+        for (int[] pos : validPositions) {
+            System.out.println(pos[0] + ", " + pos[1]);
+        }
+        return validPositions;
     }
 }
