@@ -15,3 +15,5 @@ In this game, the user is able to use a Graphical User Interace made in Java Swi
 ## Technologies used
 - Java
 - Java Swing
+- Visual Studio Code
+- Git & GitHub
